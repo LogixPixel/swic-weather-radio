@@ -8,8 +8,10 @@ var intervalSec = 10;
 
 //import routes
 const alertsRoute = require('./routes/alert');
-const { getZFP, getRWS } = require('./hourlyProducts');
+const { getZFP, getRWS, getOBS, getHWO, getSID, getTME } = require('./hourlyProducts');
+const { getNWSAlerts } = require('./nwsAlerts');
 const { speak } = require('./speak');
+const { cycle } = require('./cycle');
 
 //middleware
 app.use(express.json());
@@ -22,14 +24,7 @@ mongoose.connect(process.env.DB_CONNECTION, () =>
     console.log('connected to db')
 );
 
-async function test() {
-  await getZFP('WXM59')
-    .then(res => {
-      speak(res);
-    })
-}
-
-test()
+cycle();
 
 //run web server
 app.listen(

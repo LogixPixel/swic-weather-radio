@@ -9,6 +9,14 @@ const StationsSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  office: {
+    type: String,
+    required: true
+  },
+  intro: {
+    type: String,
+    required: true
+  },
   locs: {
     type: Array,
     required: true
